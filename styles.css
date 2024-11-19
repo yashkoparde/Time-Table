@@ -1,0 +1,17 @@
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #e0f2fe;
+}
+
+.editable-cell {
+  cursor: pointer;
+  border: 1px dashed #3b82f6;
+}
+
+.editable-cell:focus {
+  outline: none;
+  background-color: #dbeafe;
+}
