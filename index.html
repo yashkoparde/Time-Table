@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Timetable</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f0f8ff;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .table thead th {
+      background-color: #0056b3;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #d8e8f9;
+    }
+
+    .time-slot {
+      font-weight: bold;
+      color: #0056b3;
+    }
+
+    .subject {
+      font-weight: bold;
+    }
+
+    .location {
+      color: #666;
+    }
+
+    .highlight {
+      background-color: #90caf9;
+      color: #0056b3;
+      padding: 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1 class="text-center text-primary mb-4">College Timetable</h1>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Time Slot</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+        </tr>
+      </thead>
+      <tbody id="timetable"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const timetableData = [
+      {
+        time: "9:00 AM - 10:00 AM",
+        monday: { subject: "BMATS101 LAB", location: "BPLCK105B" },
+        tuesday: { subject: "LEC", location: "BPLCK105B" },
+        wednesday: { subject: "APPLE PRAC", location: "BMATS101" },
+        thursday: { subject: "MATHS", location: "BCHES102" },
+        friday: { subject: "Lec", location: "" },
+      },
+      {
+        time: "10:00 AM - 11:00 AM",
+        monday: { subject: "BMATS101 LAB", location: "" },
+        tuesday: { subject: "BMATS101 LEC", location: "BPLCK105B" },
+        wednesday: { subject: "APPLE PRAC", location: "BESCK104B" },
+        thursday: { subject: "Elec", location: "" },
+        friday: { subject: "", location: "" },
+      },
+      {
+        time: "11:15 AM - 12:15 PM",
+        monday: { subject: "BCEDK158 CAED", location: "BICOK107" },
+        tuesday: { subject: "CONSTI LEC", location: "BPLCK105B" },
+        wednesday: { subject: "Python Lec", location: "BCEDK103" },
+        thursday: { subject: "CAED", location: "BCHES102" },
+        friday: { subject: "PRAC", location: "" },
+      },
+      {
+        time: "12:15 PM - 1:15 PM",
+        monday: { subject: "BCEDK158 CAED", location: "" },
+        tuesday: { subject: "English", location: "BCHES102" },
+        wednesday: { subject: "Chem Lec", location: "BCEDK103" },
+        thursday: { subject: "CAED", location: "BCHES102" },
+        friday: { subject: "PRAC", location: "" },
+      },
+      {
+        time: "2:00 PM - 3:00 PM",
+        monday: { subject: "BESCK104B Elec", location: "" },
+        tuesday: { subject: "", location: "" },
+        wednesday: { subject: "BMAT101 TUTORIAL", location: "" },
+        thursday: { subject: "BCEDK103 CAED PRAC", location: "" },
+        friday: { subject: "", location: "" },
+      },
+      {
+        time: "3:00 PM - 4:00 PM",
+        monday: { subject: "BFHK158 Health", location: "" },
+        tuesday: { subject: "", location: "" },
+        wednesday: { subject: "BCEDK103 CAED PRAC", location: "" },
+        thursday: { subject: "", location: "" },
+        friday: { subject: "", location: "" },
+      },
+    ];
+
+    const timetableBody = document.getElementById("timetable");
+
+    timetableData.forEach((row) => {
+      const tr = document.createElement("tr");
+      const timeSlotTd = document.createElement("td");
+      timeSlotTd.className = "time-slot";
+      timeSlotTd.textContent = row.time;
+      tr.appendChild(timeSlotTd);
+
+      ["monday", "tuesday", "wednesday", "thursday", "friday"].forEach((day) => {
+        const td = document.createElement("td");
+        const subject = row[day]?.subject || "N/A";
+        const location = row[day]?.location || "";
+        td.innerHTML = `<span class="subject">${subject}</span><br><span class="location">${location}</span>`;
+        tr.appendChild(td);
+      });
+
+      timetableBody.appendChild(tr);
+    });
+  </script>
+</body>
+
+</html>
